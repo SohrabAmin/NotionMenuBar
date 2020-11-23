@@ -2,7 +2,7 @@ import rumps
 
 class AwesomeStatusBarApp(rumps.App):
     def __init__(self):
-        super(AwesomeStatusBarApp, self).__init__("Awesome App")
+        super(AwesomeStatusBarApp, self).__init__("Awesome App", icon="notion-logo.png")
         self.menu = ["Preferences", "Silly button", "Say hi", "Send to Notion"]
 
     @rumps.clicked("Preferences")
@@ -19,7 +19,9 @@ class AwesomeStatusBarApp(rumps.App):
 
     @rumps.clicked("Send to Notion")
     def send(self, _):
-        window = rumps.Window(title="Send Link to Notion", message="pls :)", default_text="https://...", ok="Send to Notion").run()
+        window = rumps.Window(title="Send Link to Notion", default_text="https://...", ok="Send to Notion", dimensions=(100, 100))
+        window.icon = 'notion-logo.png'
+        window = window.run()
         if window.clicked:
             print(window.text)
 
