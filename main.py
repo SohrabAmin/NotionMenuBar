@@ -3,7 +3,7 @@ import rumps
 class AwesomeStatusBarApp(rumps.App):
     def __init__(self):
         super(AwesomeStatusBarApp, self).__init__("Awesome App")
-        self.menu = ["Preferences", "Silly button", "Say hi"]
+        self.menu = ["Preferences", "Silly button", "Say hi", "Send to Notion"]
 
     @rumps.clicked("Preferences")
     def prefs(self, _):
@@ -16,6 +16,11 @@ class AwesomeStatusBarApp(rumps.App):
     @rumps.clicked("Say hi")
     def sayhi(self, _):
         rumps.notification("Awesome title", "amazing subtitle", "hi!!1")
+
+    @rumps.clicked("Send to Notion")
+    def send(self, _):
+        window = rumps.Window(title="Send Link to Notion", message="pls :)", default_text="https://...", ok="Send to Notion")
+        window.run()
 
 if __name__ == "__main__":
     AwesomeStatusBarApp().run()
