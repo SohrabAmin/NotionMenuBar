@@ -19,8 +19,10 @@ class AwesomeStatusBarApp(rumps.App):
 
     @rumps.clicked("Send to Notion")
     def send(self, _):
-        window = rumps.Window(title="Send Link to Notion", message="pls :)", default_text="https://...", ok="Send to Notion")
-        window.run()
+        window = rumps.Window(title="Send Link to Notion", message="pls :)", default_text="https://...", ok="Send to Notion").run()
+        if window.clicked:
+            print(window.text)
+
 
 if __name__ == "__main__":
     AwesomeStatusBarApp().run()
