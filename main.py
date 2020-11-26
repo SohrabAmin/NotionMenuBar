@@ -4,6 +4,15 @@ import rumps
 class NotionMenuBar(rumps.App):
     def __init__(self):
         super(NotionMenuBar, self).__init__("Notion Menu Bar",  icon="notion-logo.png")
+        self.menu = [
+        {
+            'Add To': {
+            }
+        },
+        None,
+        'Add Database',
+        None
+    ]
         # self.add_to = rumps.MenuItem(title="Add To")
         # self.add_database = rumps.MenuItem(title="Add Database")
         self.databases = {}
@@ -17,21 +26,16 @@ class NotionMenuBar(rumps.App):
         window.icon = 'notion-logo.png'
         window = window.run()
         if window.clicked:
-            self.databases[window.text] = rumps.MenuItem(title=window.text)
-            self.menu['Add To'].update(self.databases)
+            new_database = rumps.MenuItem(title=window.text)
+            self.databases[window.text] = new_database
+            self.menu['Add To'].add(new_database)
+
+    @rumps.clicked("Add To", "")
+    def onoff(self, sender):
+        sender.state = not sender.state
 
 
 
 if __name__ == "__main__":
     app = NotionMenuBar()
-    app.menu = [
-        {
-            'Add To': {
-
-            }
-        },
-        None,
-        'Add Database',
-        None
-    ]
     app.run()
